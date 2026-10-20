@@ -16,7 +16,7 @@ Three files: `index.html` (DOM + two canvases), `style.css`, and `game.js` (all 
 
 Things that span the code and are easy to miss:
 
-- **Board/piece encoding**: the board is a `ROWS × COLS` matrix of `0` or a color index 1–7. The same index is the piece type, the value stored inside `PIECES[type]` shape matrices, and the index into `COLORS`. Adding a piece means updating `PIECES`, `COLORS`, and the `Math.random() * 7` in `randomPiece`.
+- **Board/piece encoding**: the board is a `ROWS × COLS` matrix of `0` or a color index 1–8. The same index is the piece type, the value stored inside `PIECES[type]` shape matrices, and the index into `COLORS`. Piece 8 is the 3×3 "tuerca" (ring with an empty center). Adding a piece means updating `PIECES` and `COLORS`; `randomPiece` picks from `PIECES.length - 1` automatically.
 - **Canvas size is duplicated**: `COLS`/`ROWS`/`BLOCK` in `game.js` must match the `width`/`height` attributes of `<canvas id="board">` (300×600) in `index.html`. The next-piece canvas is 120×120 and `drawNext` hardcodes a 4×4 cell area with a 30px block.
 - **Game state lives in module-level `let` variables** (declared on one line near the top) and is fully reset by `init()`, which the restart button also calls. DOM element refs are grabbed once at load by id.
 - **Loop control**: `loop` is driven by `requestAnimationFrame` and accumulates `dropAccum` against `dropInterval`. Pause and game over stop it with `cancelAnimationFrame(animId)`; unpausing restarts it manually via `togglePause`. Any new path that stops/starts the loop must keep `animId` and `lastTime` consistent.
