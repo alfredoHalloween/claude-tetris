@@ -60,5 +60,17 @@ jobs:
             - **Propuesta de solución**: pasos concretos para implementarla.
             - **Riesgos y casos borde**.
             - **Preguntas abiertas**: solo si falta información para continuar.
+
+            Formato: el cuerpo del comentario DEBE estar en Markdown compatible con GitHub (GFM), para
+            que se renderice correctamente en el issue:
+            - Usa encabezados (`##`, `###`), listas con `-` o numeradas, y **negritas** para énfasis.
+            - Usa `código` en línea para identificadores, y bloques con triple backtick y lenguaje
+              (```js, ```diff, ```html) para fragmentos de código o diffs propuestos.
+            - Referencia archivos como `game.js:123`; usa tablas GFM o listas de tareas (`- [ ] paso`)
+              cuando ayuden a la claridad, p. ej. en la propuesta de solución.
+            - Deja una línea en blanco entre bloques (encabezados, listas, párrafos, bloques de código).
+            - El marcador `<!-- claude-triage -->` va solo en la primera línea, seguido de una línea en blanco.
+            - Escribe el cuerpo con saltos de línea reales (por ejemplo con un heredoc:
+              `--body "$(cat <<'EOF' ... EOF)"`), nunca con secuencias literales `\n` en una sola línea.
           claude_args: |
             --allowedTools "Read,Glob,Grep,Bash(gh issue view:*),Bash(gh issue edit:*),Bash(gh issue comment:*),Bash(gh label list:*),Bash(gh api:*)"
